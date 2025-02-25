@@ -1,0 +1,33 @@
+package web;
+
+import (
+	"strconv"
+	"github.com/emanueldonalds/bilkoll/db"
+	"github.com/emanueldonalds/bilkoll/formatters"
+)
+
+templ Listings(listings []db.Listing, lastScrape db.ScrapeEvent) {
+	<div id="metadata">
+		Rader: { strconv.Itoa(len(listings)) }
+		&emsp;
+		Uppdaterad: { formatters.FormatDateTime(lastScrape.Date) }
+		&emsp;
+		<a href="https://github.com/emanueldonalds/bilar-aland">Källkod</a>
+	</div>
+	<table id="listings-table">
+		<thead>
+			<tr>
+				<th><a>Pris</a></th>
+				<th><a>Objekt</a></th>
+			</tr>
+		</thead>
+		<tbody>
+			for _, x := range listings {
+				<tr>
+					<td>{ x.Price }</td>
+					<td><a href={ templ.URL(x.Url) }>{ x.TitleTruncated }</a></td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}

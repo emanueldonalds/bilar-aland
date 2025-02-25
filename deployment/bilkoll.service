@@ -1,0 +1,10 @@
+[Unit]
+Description=Bilkoll service 
+ 
+[Service]
+WorkingDirectory=/home/bilkoll/bilkoll-depl
+ExecStart=/home/bilkoll/bilkoll-depl/bilkoll
+User=bilkoll
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,99 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', sans-serif;
+    font-size: 12px;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+@media (min-width: 1024px) {
+    body {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 2000px) {
+    body {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 3000px) {
+    body {
+        font-size: 36px;
+    }
+}
+
+#title {
+    text-decoration: none;
+    color: inherit;
+}
+
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 0.2em;
+}
+
+#listings {
+    width: 100%;
+    margin-top: 2em;
+}
+
+label {
+    white-space: nowrap;
+    min-width: 5em;
+}
+
+input {
+    padding: 0.5em;
+    margin: 1em;
+    border: 1px solid #e3e3e3;
+    border-radius: 0.25em;
+    background-color: white;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-top: 1px solid #EFEFEF;
+    border-spacing: 0px 0px;
+    padding-top: 0.5em;
+}
+
+thead {
+    vertical-align: top;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #fff;
+    font-size: 1.2em;
+}
+
+th,
+td {
+    text-align: left;
+    overflow: hidden;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+}
+
+th:first-child, td:first-child {
+    width: 6em;
+    text-align: right;
+    padding-right: 1em;
+}
+
+tr:nth-child(even) {
+    background-color: #EAEAEA;
+}

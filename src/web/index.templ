@@ -1,0 +1,31 @@
+package web 
+
+import "github.com/emanueldonalds/bilkoll/db"
+
+templ Index(listings []db.Listing, lastScrape db.ScrapeEvent) {
+	<!DOCTYPE html>
+	<html lang="sv">
+		<head>
+			<meta charset="utf-8"/>
+			<title>Bilkoll</title>
+			<meta name="description" content="TBD"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<link rel="alternate" type="application/rss+xml" title="RSS feed" href="/rss"/>
+			<script src="/assets/htmx.min.js"></script>
+			<link href="/assets/style.css" rel="stylesheet"/>
+		</head>
+		<body>
+			<h1><a id="title" href="/">Bilar till salu på Åland</a></h1>
+            <p>Samlar bilannonser från https://marknaden.ax/ och https://bilwebben.ax/</p>
+			<div>
+				<label for="search">Sökterm</label>
+				<input id="search" name="search" type="text" hx-target="#listings" hx-get="/filter" hx-trigger="keyup changed delay:150ms, search-updated"/>
+				<a id="rss-link" href="/rss">Skapa RSS-flöde</a>
+			</div>
+			<div id="listings">
+				@Listings(listings, lastScrape)
+			</div>
+			<script src="/assets/script.js"></script>
+		</body>
+	</html>
+}
