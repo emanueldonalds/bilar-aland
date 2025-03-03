@@ -2,7 +2,7 @@
 
 https://bil.edonalds.com/
 
-Create custom RSS feeds for search terms on cars listed for car sale listings on Åland.
+Create custom RSS feeds for search terms on cars listed for sale on Åland.
 
 ## Requirements
 - Go 1.22.2
