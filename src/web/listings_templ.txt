@@ -1,0 +1,8 @@
+<div id=\"metadata\">Rader: 
+ &emsp; Uppdaterad: 
+ &emsp; <a href=\"https://github.com/emanueldonalds/bilar-aland\">Källkod</a></div><table id=\"listings-table\"><thead><tr><th><a class=\"sortable\" onclick=\"sort(&#39;price&#39;)\">Pris</a></th><th><a class=\"sortable\" onclick=\"sort(&#39;title&#39;)\">Objekt</a></th></tr></thead> <tbody>
+<tr><td>
+</td><td><a href=\"
+\">
+</a></td></tr>
+</tbody></table>

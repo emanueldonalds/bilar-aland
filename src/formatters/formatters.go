@@ -2,6 +2,8 @@ package formatters
 
 import (
 	"fmt"
+	"golang.org/x/text/language"
+	"golang.org/x/text/message"
 	"time"
 )
 
@@ -20,11 +22,12 @@ var swedishMonths map[time.Month]string = map[time.Month]string{
 	time.December:  "Dec",
 }
 
-func FormatPrice(value string) string {
-	if value == "" {
+func FormatPrice(value int32) string {
+	if value <= 0 {
 		return ""
 	}
-	return value + " €"
+	var res = message.NewPrinter(language.Swedish).Sprintf("%d €", value)
+	return res
 }
 
 func FormatDateTime(value string) string {

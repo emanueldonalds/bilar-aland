@@ -1,0 +1,5 @@
+<!doctype html><html lang=\"sv\"><head><meta charset=\"utf-8\"><title>Bilkoll</title><meta name=\"description\" content=\"TBD\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><link rel=\"alternate\" type=\"application/rss+xml\" title=\"RSS feed\" href=\"/rss\"><script src=\"/assets/htmx.min.js\"></script><link href=\"/assets/style.css\" rel=\"stylesheet\"></head><body><h1><a id=\"title\" href=\"/\">Bilar till salu på Åland</a></h1><p>Samlar bilannonser från https://marknaden.ax/ och https://bilwebben.ax/</p><div><form id=\"input-form\" action=\"/\" method=\"get\" hx-boost=\"true\" hx-trigger=\"keyup from:#search-input delay:250ms, sort\"><label for=\"search\">Sökterm</label> <input id=\"search-input\" name=\"search\" type=\"text\" hx-preserve=\"true\" value=\"
+\"> <a id=\"rss-link\" href=\"/rss\">Skapa RSS-flöde</a> <input id=\"sort\" name=\"sort\" type=\"hidden\" value=\"
+\"> <input id=\"order\" name=\"order\" type=\"hidden\" value=\"
+\"></form></div><div id=\"listings\">
+</div><script src=\"/assets/script.js\"></script></body></html>

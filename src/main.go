@@ -31,7 +31,6 @@ func main() {
 	db := db.GetDb()
 
 	mux.Handle("/", web.IndexHandler(db))
-	mux.Handle("/filter", web.FilterHandler(db))
 	mux.Handle("/rss", rss.RssHandler(db))
 	mux.Handle("/assets/", cacheControl(http.StripPrefix("/assets/", http.FileServer(http.Dir(assetsDir)))))
 

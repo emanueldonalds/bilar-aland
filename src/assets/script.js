@@ -1,66 +1,23 @@
-document.body.addEventListener('htmx:beforeRequest',  updateQuery);
-document.addEventListener('DOMContentLoaded',  refreshContent);
+document.addEventListener('htmx:afterRequest', focusOnSearch);
 
-window.addEventListener('popstate',  refreshContent);
-
-document.getElementById("search").addEventListener("search-updated", () => {
-    console.log("search-updated event triggered!");
-});
-
-var query = "";
-
-function refreshContent() {
-    console.log("refreshContent()")
-    resolveQueryFromUrl();
-    updateSearchInputValue();
+function focusOnSearch() {
+    document.getElementById('search-input').focus()
 }
 
-function resolveQueryFromUrl() {
-    console.log("resolveQueryFromUrl");
-     query = window.location.search;
-}
+function sort(newSortValue) {
+    const sortElement = document.getElementById('sort');
+    const orderElement = document.getElementById('order');
+    const sortValue = sortElement.value;
+    const orderValue = orderElement.value;
 
-function updateQuery(event) {
-    console.log("updateQuery");
-    const windowSearch = new URLSearchParams(window.location.search);
-    const requestParams = Object.entries(event.detail.requestConfig.parameters).map(e => {
-        return { key: e[0], value: e[1] }
-    });
-    const searchParam = requestParams.find(x => x.key === 'search')
+    let newOrderValue = orderValue
 
-    if (searchParam?.value === ''){
-        windowSearch.delete('search')
-    }
-    else
-    {
-        windowSearch.set(searchParam.key, searchParam.value)
+    if (newSortValue === sortValue) {
+        newOrderValue = orderValue === 'desc' ? 'asc' : 'desc';
     }
 
-    let searchString = windowSearch.toString();
-    query = (!searchString || searchString === '') ? '' : '?' + searchString;
-    updateUrls()
-}
+    sortElement.value = newSortValue;
+    orderElement.value = newOrderValue;
 
-function updateSearchInputValue() {
-    console.log("updateSearchInputValue");
-    const params = new URLSearchParams(query);
-    const search = "search";
-    let searchElement = document.getElementById(search)
-    searchElement.value = params.get(search) ?? '';
-    console.log("Firing reload event")
-    searchElement.dispatchEvent(new CustomEvent("search-updated"));
-}
-
-function updateUrls() {
-    console.log("updateUrls");
-    var url = window.location.origin + query;
-    window.history.pushState(null, null, url);
-    updateRssLink(query);
-}
-    
-function updateRssLink() {
-    console.log("updateRssLink");
-    const origin = window.location.origin;
-    const rssElement = document.getElementById('rss-link');
-    rssElement.setAttribute('href', origin + '/rss' + query)
+    document.getElementById('input-form').dispatchEvent(new CustomEvent('sort'));
 }

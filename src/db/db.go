@@ -38,7 +38,7 @@ func GetDb() *sql.DB {
 	return db
 }
 
-func GetListings(searchInput string, sqldb *sql.DB) []Listing {
+func GetListings(searchInput string, sortByInput string, sortOrderInput string, sqldb *sql.DB) []Listing {
 
 	words := strings.Fields(searchInput)
 
@@ -62,7 +62,20 @@ func GetListings(searchInput string, sqldb *sql.DB) []Listing {
 		queryString = queryString + "WHERE MATCH(normalized_title) AGAINST(? IN BOOLEAN MODE) "
 	}
 
-    queryString = queryString + "ORDER BY normalized_title COLLATE 'utf8mb4_swedish_ci' ASC"
+    sortColumn := "normalized_title COLLATE 'utf8mb4_swedish_ci'"
+    sortOrder := "ASC"
+    
+    if (sortByInput == "price") {
+        sortColumn = "price"
+    }
+
+    if (sortOrderInput == "asc") {
+        sortOrder = "DESC"
+    }
+
+    orderQuery := fmt.Sprintf("ORDER BY %s %s", sortColumn, sortOrder)
+
+    queryString = queryString + orderQuery
 
 	logger.Debug("Get listings: Executing DB query")
 	query, err := sqldb.Query(queryString, params...)

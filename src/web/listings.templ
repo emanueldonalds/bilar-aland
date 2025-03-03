@@ -17,14 +17,14 @@ templ Listings(listings []db.Listing, lastScrape db.ScrapeEvent) {
 	<table id="listings-table">
 		<thead>
 			<tr>
-				<th><a>Pris</a></th>
-				<th><a>Objekt</a></th>
+				<th><a class="sortable" onclick="sort('price')">Pris</a></th>
+				<th><a class="sortable" onclick="sort('title')">Objekt</a></th>
 			</tr>
 		</thead>
 		<tbody>
 			for _, x := range listings {
 				<tr>
-					<td>{ x.Price }</td>
+					<td>{ formatters.FormatPrice(x.Price) }</td>
 					<td><a href={ templ.URL(x.Url) }>{ x.TitleTruncated }</a></td>
 				</tr>
 			}

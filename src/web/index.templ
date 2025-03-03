@@ -2,7 +2,7 @@ package web
 
 import "github.com/emanueldonalds/bilkoll/db"
 
-templ Index(listings []db.Listing, lastScrape db.ScrapeEvent) {
+templ Index(listings []db.Listing, lastScrape db.ScrapeEvent, search string, sortBy string, orderBy string) {
 	<!DOCTYPE html>
 	<html lang="sv">
 		<head>
@@ -16,11 +16,15 @@ templ Index(listings []db.Listing, lastScrape db.ScrapeEvent) {
 		</head>
 		<body>
 			<h1><a id="title" href="/">Bilar till salu på Åland</a></h1>
-            <p>Samlar bilannonser från https://marknaden.ax/ och https://bilwebben.ax/</p>
+			<p>Samlar bilannonser från https://marknaden.ax/ och https://bilwebben.ax/</p>
 			<div>
-				<label for="search">Sökterm</label>
-				<input id="search" name="search" type="text" hx-target="#listings" hx-get="/filter" hx-trigger="keyup changed delay:150ms, search-updated"/>
-				<a id="rss-link" href="/rss">Skapa RSS-flöde</a>
+				<form id="input-form" action="/" method="get" hx-boost="true" hx-trigger="keyup from:#search-input delay:250ms, sort">
+					<label for="search">Sökterm</label>
+					<input id="search-input" name="search" type="text" hx-preserve="true" value={search}/>
+					<a id="rss-link" href="/rss">Skapa RSS-flöde</a>
+					<input id="sort" name="sort" type="hidden" value={sortBy}/>
+					<input id="order" name="order" type="hidden" value={orderBy}/>
+				</form>
 			</div>
 			<div id="listings">
 				@Listings(listings, lastScrape)

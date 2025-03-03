@@ -4,7 +4,7 @@ type Listing struct {
 	Url           string
 	Title         string
 	TitleTruncated    string
-    Price         string
+    Price         int32
     CreatedAt     string
 }
 

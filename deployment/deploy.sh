@@ -20,13 +20,12 @@ cp $REPO_DIR/src/rss/template.xml $DEPL_DIR/rss/.
 
 cd $REPO_DIR/src
 
-/usr/bin/templ generate
-
 GOOS=linux 
 GOARCH=amd64 
 
 /usr/local/go/bin/go build -o $DEPL_DIR/$APP_NAME
 
 sudo /usr/bin/systemctl daemon-reload
-sudo /usr/bin/systemctl restart $APP_NAME
-sudo /usr/bin/systemctl status $APP_NAME
+sudo /usr/bin/systemctl restart $APP_NAME.service
+sudo /usr/bin/systemctl enable $APP_NAME.service
+sudo /usr/bin/systemctl status $APP_NAME.service
