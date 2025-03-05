@@ -18,7 +18,6 @@ var rssTemplate = readFile("rss/template.xml")
 func RssHandler(sqldb *sql.DB) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		search := r.URL.Query().Get("search")
-		fmt.Println("Search " + search)
 		listings := db.GetListings(search, "title", "desc", sqldb)
 		lastScrape := db.GetLastScrape(sqldb)
 

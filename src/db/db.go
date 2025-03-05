@@ -54,7 +54,8 @@ func GetListings(searchInput string, sortByInput string, sortOrderInput string, 
 	var queryString = "SELECT " +
 		"url, " +
 		"title, " +
-		"price " +
+		"price, " +
+		"created_at " +
 		"FROM listing "
 
 	if search != "" {
@@ -92,6 +93,7 @@ func GetListings(searchInput string, sortByInput string, sortOrderInput string, 
 			&rowListing.Url,
 			&rowListing.Title,
 			&rowListing.Price,
+			&rowListing.CreatedAt,
 		)
 
 		if err != nil {
