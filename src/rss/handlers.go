@@ -26,7 +26,7 @@ func RssHandler(sqldb *sql.DB) http.Handler {
 			listing := listings[i]
 
 			items = append(items, Item{
-				Title: listing.Title,
+				Title: html.EscapeString(listing.Title),
 				Link:  listing.Url,
 				Description: fmt.Sprintf(
 					html.EscapeString("<ul><li>Price: %s</li></ul>"),
