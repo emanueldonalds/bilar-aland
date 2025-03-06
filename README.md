@@ -4,6 +4,8 @@ https://bil.edonalds.com/
 
 Create custom RSS feeds for search terms on cars listed for sale on Åland.
 
+Site analytics here: https://analytics.edonalds.com/bil.edonalds.com
+
 ## Requirements
 - Go 1.22.2
 - [templ 0.2.524](https://templ.guide/)
